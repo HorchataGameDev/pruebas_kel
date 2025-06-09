@@ -44,7 +44,7 @@ function getCuerpo(id){
 
 
 async function list_directory(user, repo, directory) {
-  const url = `https://api.github.com/repos/${user}/${repo}/git/trees/master`;
+  const url = `https://api.github.com/repos/${user}/${repo}/git/trees/main`;
   const list = await fetch(url).then(res => res.json());
   const dir = list.tree.find(node => node.path === directory);
   if (dir) {
