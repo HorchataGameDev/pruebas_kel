@@ -12,16 +12,20 @@ function cambiar(id){
 function getCuerpo(id){
     if(id=="boton_2d"){
         var folder = "imagenes/2D/";
+        var resultado = [];
         $.ajax({
         url : folder,
         success: function (data) {
             $(data).find("a").attr("href", function (i, val) {
                 if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                    $("body").append( "<img src='"+ folder + val +"'>" );
+                    resultado.push("<img src='"+ folder + val +"'>");
+                    //$("body").append( "<img src='"+ folder + val +"'>" );
                 } 
             });
         }
     });
+    alert(resultado);
+    return resultado;
     }
     else if(id=="boton_3d"){
 
