@@ -11,8 +11,7 @@ function cambiar(id){
 
 function getCuerpo(id){
     if(id=="boton_2d"){
-        var folder = "imagens/2D/";
-
+        var folder = "imagenes/2D/";
         $.ajax({
         url : folder,
         success: function (data) {
