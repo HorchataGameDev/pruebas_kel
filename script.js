@@ -28,7 +28,7 @@ function getCuerpo(id){
     return resultado;
     }
     else if(id=="boton_3d"){
-        alert(list_directory("HorchataGameDev", "pruebas_kel", "/imagenes/2d/"));
+        return list_directory("HorchataGameDev", "pruebas_kel", "/imagenes/2d/");
     }
     else if(id=="boton_reel"){
 
