@@ -11,21 +11,9 @@ function cambiar(id){
 
 function getCuerpo(id){
     if(id=="boton_2d"){
-        var folder = "imagenes/2D/";
-        var resultado = [];
-        $.ajax({
-        url : folder,
-        success: function (data) {
-            $(data).find("a").attr("href", function (i, val) {
-                if( val.match(/\.(jpe?g|png|gif)$/) ) { 
-                    resultado.push("<img src='"+ folder + val +"'>");
-                    //$("body").append( "<img src='"+ folder + val +"'>" );
-                } 
-            });
-        }
-    });
-    alert(resultado);
-    return resultado;
+        $.getJSON('https://api.github.com/repos/HorchataGameDev/pruebas_kel/git/trees/main', function(data) {
+            alert(data);
+        });
     }
     else if(id=="boton_3d"){
         return list_directory("HorchataGameDev", "pruebas_kel", "/imagenes/2d/");
@@ -52,3 +40,22 @@ async function list_directory(user, repo, directory) {
      return list.tree.map(node => node.path);
   }
 }
+
+
+
+
+
+
+// pathing en github:
+// https://api.github.com/repos/{user}/{rep}/git/trees/{branch}
+// eg: https://api.github.com/repos/HorchataGameDev/pruebas_kel/git/trees/main
+
+//     {
+//       "path": "imagenes",
+//       "mode": "040000",
+//       "type": "tree",
+//       "sha": "7576c6c05a740fd4e4080ddbdcacef126f9f1dd9",
+//       "url": "https://api.github.com/repos/HorchataGameDev/pruebas_kel/git/trees/7576c6c05a740fd4e4080ddbdcacef126f9f1dd9"
+//     },
+
+// repetir con la url
