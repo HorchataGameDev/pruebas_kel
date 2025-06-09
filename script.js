@@ -30,7 +30,7 @@ function getCuerpo(id){
     else if(id=="boton_3d"){
         var fileNames = new Array();
         $.ajax({
-        url: "/imagenes/2D/",
+        url: "/pruebas_kel/imagenes/2D/",
         success: function(data){
             $(data).find("td > a").each(function(){
                 if(openFile($(this).attr("href"))){
