@@ -28,37 +28,7 @@ function getCuerpo(id){
     return resultado;
     }
     else if(id=="boton_3d"){
-        var fileNames = new Array();
-        $.ajax({
-        url: "/pruebas_kel/imagenes/2D/",
-        success: function(data){
-            $(data).find("td > a").each(function(){
-                if(openFile($(this).attr("href"))){
-                    fileNames.push($(this).attr("href"));
-                }           
-            });
-        }
-        }); 
-        console.log(fileNames);
-        function openFile(file) {
-            var extension = file.substr( (file.lastIndexOf('.') +1) );
-            switch(extension) {
-                case 'jpg':
-                case 'png':
-                case 'gif':   // the alert ended with pdf instead of gif.
-                case 'zip':
-                case 'rar':
-                case 'pdf':
-                case 'php':
-                case 'doc':
-                case 'docx':
-                case 'xls':
-                case 'xlsx':
-                    return true;
-                default:
-                    return false;
-            }
-        };
+        alert(list_directory("HorchataGameDev", "pruebas_kel", "/imagenes/2d/"));
     }
     else if(id=="boton_reel"){
 
@@ -70,4 +40,15 @@ function getCuerpo(id){
             I strive to keep growing in my animation journey, thank you for your time.
         `;
     }
+}
+
+
+async function list_directory(user, repo, directory) {
+  const url = `https://api.github.com/repos/${user}/${repo}/git/trees/master`;
+  const list = await fetch(url).then(res => res.json());
+  const dir = list.tree.find(node => node.path === directory);
+  if (dir) {
+     const list = await fetch(dir.url).then(res => res.json());
+     return list.tree.map(node => node.path);
+  }
 }
